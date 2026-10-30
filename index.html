@@ -8,56 +8,63 @@
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;background:#090b10;color:white;
+ margin:0;background:#08090e;color:white;
  font-family:Arial,sans-serif;
 }
 header{
- background:#151820;padding:22px 15px;
- border-bottom:2px solid #e32636;
- text-align:center;
+ background:#11141d;padding:22px 12px;
+ text-align:center;border-bottom:2px solid #ed263c;
 }
-.logo{font-size:24px;font-weight:900;color:#ff3548}
-header p{color:#aaa;font-size:12px}
-.hero{text-align:center;padding:35px 15px}
-.hero h1{font-size:30px}
-.hero h1 span{color:#ff3548}
-.hero p{color:#aaa}
-.container{max-width:600px;margin:auto;padding:15px}
-.section-title{border-left:4px solid #ff3548;padding-left:12px}
-.packages{
+.logo{font-size:24px;font-weight:900;color:#ff3349}
+header p{font-size:11px;color:#aaa;letter-spacing:2px}
+.hero{
+ padding:38px 15px;text-align:center;
+ background:linear-gradient(135deg,#260b13,#11141d,#310b13);
+}
+.hero h1{font-size:30px;margin:5px}
+.hero h1 span{color:#ff344c}
+.hero p{color:#ccc;font-size:13px}
+.container{max-width:650px;margin:auto;padding:15px}
+.section-title{
+ border-left:4px solid #f32d43;padding-left:12px;
+ margin-top:30px;
+}
+.grid{
  display:grid;grid-template-columns:1fr 1fr;gap:12px;
 }
 .package{
- background:#171c26;border:1px solid #343b49;
- padding:18px 10px;border-radius:12px;
+ background:#171b26;border:1px solid #343b49;
+ border-radius:12px;padding:17px 8px;
  text-align:center;cursor:pointer;
 }
-.package:focus,.package:hover{
- border:1px solid #ff3548;background:#29151b;
+.package:hover,.package.selected{
+ border-color:#ff344c;background:#29151d;
 }
-.package h3{margin:8px 0}
-.price{color:#ff5261;font-weight:bold}
+.package .diamond{font-size:25px}
+.package h3{font-size:15px;margin:8px 0}
+.price{color:#ff5264;font-size:17px;font-weight:bold}
 form{
- background:#171c26;padding:20px;
- border-radius:14px;margin-top:25px;
+ background:#171b26;padding:20px;
+ border:1px solid #353b49;border-radius:14px;
+ margin-top:30px;
 }
-label{display:block;margin:15px 0 7px}
+label{display:block;margin:17px 0 8px;font-size:14px}
 input,select{
  width:100%;padding:14px;border-radius:8px;
- background:#090d15;border:1px solid #424957;
+ border:1px solid #424958;background:#0a0d14;
  color:white;font-size:15px;
 }
 button{
- width:100%;padding:15px;border:0;
- background:#e32636;color:white;
- font-size:16px;font-weight:bold;
- border-radius:9px;margin-top:18px;
+ width:100%;padding:15px;background:#ed263c;
+ border:0;border-radius:9px;color:white;
+ font-weight:bold;font-size:16px;margin-top:20px;
 }
-.note{color:#aaa;font-size:12px;line-height:1.6}
+button:active{opacity:.8}
+.note{font-size:12px;color:#aaa;line-height:1.6}
 footer{
  text-align:center;padding:25px;color:#888;
- font-size:12px;margin-top:30px;
- border-top:1px solid #333;
+ font-size:12px;border-top:1px solid #333;
+ margin-top:30px;
 }
 </style>
 </head>
@@ -71,78 +78,163 @@ footer{
 <section class="hero">
  <h1>GET YOUR <span>DIAMONDS</span></h1>
  <p>Welcome to FreeFire Topup Center Nepal [BD]</p>
+ <p>Choose your package and place a demo order.</p>
 </section>
 
 <main class="container">
- <h2 class="section-title">💎 Diamond Packages</h2>
 
- <div class="packages">
-  <div class="package" tabindex="0" onclick="choose('25 Diamonds')">
-   <div>💎</div><h3>25 Diamonds</h3>
-   <div class="price">Price: Coming soon</div>
-  </div>
-  <div class="package" tabindex="0" onclick="choose('50 Diamonds')">
-   <div>💎</div><h3>50 Diamonds</h3>
-   <div class="price">Price: Coming soon</div>
-  </div>
-  <div class="package" tabindex="0" onclick="choose('115 Diamonds')">
-   <div>💎</div><h3>115 Diamonds</h3>
-   <div class="price">Price: Coming soon</div>
-  </div>
-  <div class="package" tabindex="0" onclick="choose('240 Diamonds')">
-   <div>💎</div><h3>240 Diamonds</h3>
-   <div class="price">Price: Coming soon</div>
-  </div>
-  <div class="package" tabindex="0" onclick="choose('610 Diamonds')">
-   <div>💎</div><h3>610 Diamonds</h3>
-   <div class="price">Price: Coming soon</div>
-  </div>
-  <div class="package" tabindex="0" onclick="choose('1240 Diamonds')">
-   <div>💎</div><h3>1240 Diamonds</h3>
-   <div class="price">Price: Coming soon</div>
-  </div>
- </div>
+<h2 class="section-title">💎 Diamond Packages</h2>
+<div class="grid" id="diamonds"></div>
 
- <form onsubmit="demo(event)">
-  <h2>🛒 Place Your Order</h2>
+<h2 class="section-title">📅 Weekly Membership</h2>
+<div class="grid" id="weekly"></div>
 
-  <label>Free Fire Player UID</label>
-  <input type="text" id="uid" placeholder="Enter Player UID" required>
+<h2 class="section-title">🗓️ Monthly Membership</h2>
+<div class="grid" id="monthly"></div>
 
-  <label>Select Diamond Package</label>
-  <select id="package" required>
-   <option value="">Choose package</option>
-   <option>25 Diamonds</option>
-   <option>50 Diamonds</option>
-   <option>115 Diamonds</option>
-   <option>240 Diamonds</option>
-   <option>610 Diamonds</option>
-   <option>1240 Diamonds</option>
-  </select>
+<h2 class="section-title">⭐ Level Up Packages</h2>
+<div class="grid" id="levelup"></div>
 
-  <label>Payment method (preview)</label>
-  <select disabled>
-   <option>eSewa / Khalti (Coming soon)</option>
-  </select>
+<form id="orderForm">
+ <h2>🛒 Place Your Order</h2>
 
-  <button type="submit">SUBMIT DEMO ORDER</button>
-  <p class="note">Demo only. No payment is collected and no diamonds are delivered. Do not enter real customer details.</p>
- </form>
+ <label>Free Fire Player UID</label>
+ <input id="uid" type="text" inputmode="numeric"
+ placeholder="Enter Player UID" required maxlength="20">
+
+ <label>Select Package</label>
+ <select id="package" required>
+  <option value="">Choose a package</option>
+ </select>
+
+ <label>Price</label>
+ <input id="price" readonly placeholder="Select package first">
+
+ <label>Payment method (preview)</label>
+ <select disabled>
+  <option>eSewa / Khalti (Coming soon)</option>
+ </select>
+
+ <button type="submit">SUBMIT DEMO ORDER</button>
+
+ <p class="note">
+ This is a demo order form. No payment is collected,
+ no customer data is transmitted and no diamonds are delivered.
+ Do not enter real personal or payment information.
+ </p>
+</form>
+
+<div id="result" style="display:none;background:#171b26;padding:18px;margin-top:15px;border-radius:10px">
+ <h3 style="color:#ff5264">Demo order preview</h3>
+ <p id="orderDetails"></p>
+ <button type="button" onclick="resetOrder()">New demo order</button>
+</div>
+
 </main>
 
 <footer>
- FREEFIRE TOPUP CENTER NEPAL [BD]<br>
- Independent fan-made store concept. Not affiliated with Garena.
+ FREEFIRE TOPUP CENTER NEPAL [BD]<br><br>
+ Independent fan-made store concept.
+ Not affiliated with or endorsed by Garena.
 </footer>
 
 <script>
-function choose(name){
- document.getElementById('package').value=name;
- document.querySelector('form').scrollIntoView({behavior:'smooth'});
+const groups = {
+ diamonds: [
+  ["25 Diamonds",30],["50 Diamonds",55],
+  ["115 Diamonds",115],["240 Diamonds",215],
+  ["610 Diamonds",540],["1240 Diamonds",1090],
+  ["2530 Diamonds",2160]
+ ],
+ weekly: [
+  ["Weekly",220],["Weekly 2x",440],
+  ["Weekly 3x",670],["Weekly 4x",890],
+  ["Weekly 5x",1080],["Weekly Lite 2x",200]
+ ],
+ monthly: [
+  ["Monthly",1100],["Monthly 2x",2200],
+  ["Monthly 3x",3400],["Monthly 4x",4230],
+  ["Monthly 5x",5300]
+ ],
+ levelup: [
+  ["Level Up 6",100],["Level Up 10",135],
+  ["Level Up 15",145],["Level Up 20",145],
+  ["Level Up 25",145],["Level Up 30",200],
+  ["Level Up All",750]
+ ]
+};
+
+const select = document.getElementById("package");
+const priceInput = document.getElementById("price");
+
+Object.entries(groups).forEach(([group,items])=>{
+ const container = document.getElementById(group);
+
+ items.forEach(([name,price])=>{
+  const card = document.createElement("div");
+  card.className="package";
+  const icon = group==="diamonds" ? "💎" :
+   group==="weekly" ? "📅" :
+   group==="monthly" ? "🗓️" : "⭐";
+
+  const heading=document.createElement("h3");
+  heading.textContent=name;
+  const amount=document.createElement("div");
+  amount.className="price";
+  amount.textContent="Rs. "+price;
+
+  const emoji=document.createElement("div");
+  emoji.className="diamond";
+  emoji.textContent=icon;
+
+  card.append(emoji,heading,amount);
+  card.addEventListener("click",()=>{
+   select.value=name;
+   updatePrice();
+   document.querySelectorAll(".package").forEach(c=>c.classList.remove("selected"));
+   card.classList.add("selected");
+   document.getElementById("orderForm").scrollIntoView({behavior:"smooth"});
+  });
+  container.appendChild(card);
+
+  const option=document.createElement("option");
+  option.value=name;
+  option.textContent=name+" - Rs. "+price;
+  select.appendChild(option);
+ });
+});
+
+function updatePrice(){
+ const all=Object.values(groups).flat();
+ const item=all.find(x=>x[0]===select.value);
+ priceInput.value=item ? "Rs. "+item[1] : "";
 }
-function demo(e){
+select.addEventListener("change",updatePrice);
+
+document.getElementById("orderForm").addEventListener("submit",e=>{
  e.preventDefault();
- alert('Demo website only! Real ordering is not activated yet.');
+ const uid=document.getElementById("uid").value.trim();
+ const name=select.value;
+ const item=Object.values(groups).flat().find(x=>x[0]===name);
+
+ if(!/^\d{5,20}$/.test(uid)){
+  alert("Please enter a valid demo UID (5-20 digits).");
+  return;
+ }
+ if(!item){alert("Please select a package.");return;}
+
+ document.getElementById("orderDetails").textContent=
+  "UID: "+uid+" | Package: "+name+" | Price: Rs. "+item[1]+
+  " | Status: Demo only";
+
+ document.getElementById("result").style.display="block";
+ document.getElementById("result").scrollIntoView({behavior:"smooth"});
+});
+function resetOrder(){
+ document.getElementById("orderForm").reset();
+ priceInput.value="";
+ document.getElementById("result").style.display="none";
+ document.querySelectorAll(".package").forEach(c=>c.classList.remove("selected"));
 }
 </script>
 </body>
