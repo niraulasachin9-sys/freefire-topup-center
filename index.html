@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreeFire Topup Center Nepal [BD]</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#090b10;color:white;
+ font-family:Arial,sans-serif;
+}
+header{
+ background:#151820;padding:22px 15px;
+ border-bottom:2px solid #e32636;
+ text-align:center;
+}
+.logo{font-size:24px;font-weight:900;color:#ff3548}
+header p{color:#aaa;font-size:12px}
+.hero{text-align:center;padding:35px 15px}
+.hero h1{font-size:30px}
+.hero h1 span{color:#ff3548}
+.hero p{color:#aaa}
+.container{max-width:600px;margin:auto;padding:15px}
+.section-title{border-left:4px solid #ff3548;padding-left:12px}
+.packages{
+ display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.package{
+ background:#171c26;border:1px solid #343b49;
+ padding:18px 10px;border-radius:12px;
+ text-align:center;cursor:pointer;
+}
+.package:focus,.package:hover{
+ border:1px solid #ff3548;background:#29151b;
+}
+.package h3{margin:8px 0}
+.price{color:#ff5261;font-weight:bold}
+form{
+ background:#171c26;padding:20px;
+ border-radius:14px;margin-top:25px;
+}
+label{display:block;margin:15px 0 7px}
+input,select{
+ width:100%;padding:14px;border-radius:8px;
+ background:#090d15;border:1px solid #424957;
+ color:white;font-size:15px;
+}
+button{
+ width:100%;padding:15px;border:0;
+ background:#e32636;color:white;
+ font-size:16px;font-weight:bold;
+ border-radius:9px;margin-top:18px;
+}
+.note{color:#aaa;font-size:12px;line-height:1.6}
+footer{
+ text-align:center;padding:25px;color:#888;
+ font-size:12px;margin-top:30px;
+ border-top:1px solid #333;
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">🔥 FREEFIRE TOPUP</div>
+ <p>NEPAL [BD] • DIAMOND STORE</p>
+</header>
+
+<section class="hero">
+ <h1>GET YOUR <span>DIAMONDS</span></h1>
+ <p>Welcome to FreeFire Topup Center Nepal [BD]</p>
+</section>
+
+<main class="container">
+ <h2 class="section-title">💎 Diamond Packages</h2>
+
+ <div class="packages">
+  <div class="package" tabindex="0" onclick="choose('25 Diamonds')">
+   <div>💎</div><h3>25 Diamonds</h3>
+   <div class="price">Price: Coming soon</div>
+  </div>
+  <div class="package" tabindex="0" onclick="choose('50 Diamonds')">
+   <div>💎</div><h3>50 Diamonds</h3>
+   <div class="price">Price: Coming soon</div>
+  </div>
+  <div class="package" tabindex="0" onclick="choose('115 Diamonds')">
+   <div>💎</div><h3>115 Diamonds</h3>
+   <div class="price">Price: Coming soon</div>
+  </div>
+  <div class="package" tabindex="0" onclick="choose('240 Diamonds')">
+   <div>💎</div><h3>240 Diamonds</h3>
+   <div class="price">Price: Coming soon</div>
+  </div>
+  <div class="package" tabindex="0" onclick="choose('610 Diamonds')">
+   <div>💎</div><h3>610 Diamonds</h3>
+   <div class="price">Price: Coming soon</div>
+  </div>
+  <div class="package" tabindex="0" onclick="choose('1240 Diamonds')">
+   <div>💎</div><h3>1240 Diamonds</h3>
+   <div class="price">Price: Coming soon</div>
+  </div>
+ </div>
+
+ <form onsubmit="demo(event)">
+  <h2>🛒 Place Your Order</h2>
+
+  <label>Free Fire Player UID</label>
+  <input type="text" id="uid" placeholder="Enter Player UID" required>
+
+  <label>Select Diamond Package</label>
+  <select id="package" required>
+   <option value="">Choose package</option>
+   <option>25 Diamonds</option>
+   <option>50 Diamonds</option>
+   <option>115 Diamonds</option>
+   <option>240 Diamonds</option>
+   <option>610 Diamonds</option>
+   <option>1240 Diamonds</option>
+  </select>
+
+  <label>Payment method (preview)</label>
+  <select disabled>
+   <option>eSewa / Khalti (Coming soon)</option>
+  </select>
+
+  <button type="submit">SUBMIT DEMO ORDER</button>
+  <p class="note">Demo only. No payment is collected and no diamonds are delivered. Do not enter real customer details.</p>
+ </form>
+</main>
+
+<footer>
+ FREEFIRE TOPUP CENTER NEPAL [BD]<br>
+ Independent fan-made store concept. Not affiliated with Garena.
+</footer>
+
+<script>
+function choose(name){
+ document.getElementById('package').value=name;
+ document.querySelector('form').scrollIntoView({behavior:'smooth'});
+}
+function demo(e){
+ e.preventDefault();
+ alert('Demo website only! Real ordering is not activated yet.');
+}
+</script>
+</body>
+</html>
