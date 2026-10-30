@@ -5,69 +5,154 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FreeFire Topup Center Nepal [BD]</title>
+
 <style>
 *{box-sizing:border-box}
+
 body{
- margin:0;background:#08090e;color:white;
+ margin:0;
+ background:#08090e;
+ color:white;
  font-family:Arial,sans-serif;
 }
+
 header{
- background:#11141d;padding:22px 12px;
- text-align:center;border-bottom:2px solid #ed263c;
+ background:#11141d;
+ padding:22px 12px;
+ text-align:center;
+ border-bottom:2px solid #ed263c;
 }
-.logo{font-size:24px;font-weight:900;color:#ff3349}
-header p{font-size:11px;color:#aaa;letter-spacing:2px}
+
+.logo{
+ font-size:24px;
+ font-weight:900;
+ color:#ff3349;
+}
+
+header p{
+ font-size:11px;
+ color:#aaa;
+ letter-spacing:2px;
+}
+
 .hero{
- padding:38px 15px;text-align:center;
+ padding:38px 15px;
+ text-align:center;
  background:linear-gradient(135deg,#260b13,#11141d,#310b13);
 }
-.hero h1{font-size:30px;margin:5px}
+
+.hero h1{font-size:30px}
 .hero h1 span{color:#ff344c}
 .hero p{color:#ccc;font-size:13px}
-.container{max-width:650px;margin:auto;padding:15px}
+
+.container{
+ max-width:760px;
+ margin:auto;
+ padding:15px;
+}
+
 .section-title{
- border-left:4px solid #f32d43;padding-left:12px;
+ border-left:4px solid #f32d43;
+ padding-left:12px;
  margin-top:30px;
 }
+
 .grid{
- display:grid;grid-template-columns:1fr 1fr;gap:12px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
 }
+
 .package{
- background:#171b26;border:1px solid #343b49;
- border-radius:12px;padding:17px 8px;
- text-align:center;cursor:pointer;
+ background:#171b26;
+ border:1px solid #343b49;
+ border-radius:12px;
+ padding:17px 8px;
+ text-align:center;
+ cursor:pointer;
 }
+
 .package:hover,.package.selected{
- border-color:#ff344c;background:#29151d;
+ border-color:#ff344c;
+ background:#29151d;
 }
-.package .diamond{font-size:25px}
-.package h3{font-size:15px;margin:8px 0}
-.price{color:#ff5264;font-size:17px;font-weight:bold}
-form{
- background:#171b26;padding:20px;
- border:1px solid #353b49;border-radius:14px;
+
+.package h3{font-size:15px}
+.price{
+ color:#ff5264;
+ font-size:17px;
+ font-weight:bold;
+}
+
+form,.panel{
+ background:#171b26;
+ padding:20px;
+ border:1px solid #353b49;
+ border-radius:14px;
  margin-top:30px;
 }
-label{display:block;margin:17px 0 8px;font-size:14px}
+
+label{
+ display:block;
+ margin:17px 0 8px;
+ font-size:14px;
+}
+
 input,select{
- width:100%;padding:14px;border-radius:8px;
- border:1px solid #424958;background:#0a0d14;
- color:white;font-size:15px;
+ width:100%;
+ padding:14px;
+ border-radius:8px;
+ border:1px solid #424958;
+ background:#0a0d14;
+ color:white;
+ font-size:15px;
 }
+
 button{
- width:100%;padding:15px;background:#ed263c;
- border:0;border-radius:9px;color:white;
- font-weight:bold;font-size:16px;margin-top:20px;
+ width:100%;
+ padding:15px;
+ background:#ed263c;
+ border:0;
+ border-radius:9px;
+ color:white;
+ font-weight:bold;
+ font-size:16px;
+ margin-top:20px;
+ cursor:pointer;
 }
-button:active{opacity:.8}
-.note{font-size:12px;color:#aaa;line-height:1.6}
+
+button:disabled{opacity:.5}
+
+.note{
+ font-size:12px;
+ color:#aaa;
+ line-height:1.6;
+}
+
+.status{
+ padding:12px;
+ border-radius:8px;
+ background:#21151a;
+ color:#ffd7dc;
+ font-size:13px;
+ line-height:1.5;
+}
+
 footer{
- text-align:center;padding:25px;color:#888;
- font-size:12px;border-top:1px solid #333;
+ text-align:center;
+ padding:25px;
+ color:#888;
+ font-size:12px;
+ border-top:1px solid #333;
  margin-top:30px;
+}
+
+@media(min-width:600px){
+ .grid{grid-template-columns:repeat(3,1fr)}
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -78,56 +163,49 @@ footer{
 <section class="hero">
  <h1>GET YOUR <span>DIAMONDS</span></h1>
  <p>Welcome to FreeFire Topup Center Nepal [BD]</p>
- <p>Choose your package and place a demo order.</p>
+ <p>Choose your package and create an order.</p>
 </section>
 
 <main class="container">
 
-<h2 class="section-title">💎 Diamond Packages</h2>
-<div class="grid" id="diamonds"></div>
+<div class="status">
+ <b>Demo checkout:</b> Real payments and diamond delivery
+ are not active yet. Do not enter payment credentials.
+</div>
 
-<h2 class="section-title">📅 Weekly Membership</h2>
-<div class="grid" id="weekly"></div>
-
-<h2 class="section-title">🗓️ Monthly Membership</h2>
-<div class="grid" id="monthly"></div>
-
-<h2 class="section-title">⭐ Level Up Packages</h2>
-<div class="grid" id="levelup"></div>
+<div id="catalog"></div>
 
 <form id="orderForm">
- <h2>🛒 Place Your Order</h2>
 
- <label>Free Fire Player UID</label>
- <input id="uid" type="text" inputmode="numeric"
- placeholder="Enter Player UID" required maxlength="20">
+<h2>🛒 Place Your Order</h2>
 
- <label>Select Package</label>
- <select id="package" required>
-  <option value="">Choose a package</option>
- </select>
+<label>Free Fire Player UID</label>
+<input id="uid" type="text"
+ inputmode="numeric"
+ placeholder="Enter Player UID"
+ maxlength="20" required>
 
- <label>Price</label>
- <input id="price" readonly placeholder="Select package first">
+<label>Select Package</label>
+<select id="package" required>
+ <option value="">Choose a package</option>
+</select>
 
- <label>Payment method (preview)</label>
- <select disabled>
-  <option>eSewa / Khalti (Coming soon)</option>
- </select>
+<label>Price</label>
+<input id="price" readonly
+ placeholder="Select package first">
 
- <button type="submit">SUBMIT DEMO ORDER</button>
+<button type="submit">CREATE DEMO ORDER</button>
 
- <p class="note">
- This is a demo order form. No payment is collected,
- no customer data is transmitted and no diamonds are delivered.
- Do not enter real personal or payment information.
- </p>
+<p class="note">
+Demo only. No payment is collected and no diamonds
+are delivered. Never share your wallet PIN or OTP.
+</p>
+
 </form>
 
-<div id="result" style="display:none;background:#171b26;padding:18px;margin-top:15px;border-radius:10px">
- <h3 style="color:#ff5264">Demo order preview</h3>
- <p id="orderDetails"></p>
- <button type="button" onclick="resetOrder()">New demo order</button>
+<div class="panel" id="result" hidden>
+ <h3>Order Created!</h3>
+ <p id="details"></p>
 </div>
 
 </main>
@@ -135,107 +213,169 @@ footer{
 <footer>
  FREEFIRE TOPUP CENTER NEPAL [BD]<br><br>
  Independent fan-made store concept.
- Not affiliated with or endorsed by Garena.
+ Not affiliated with Garena.
 </footer>
 
 <script>
-const groups = {
- diamonds: [
-  ["25 Diamonds",30],["50 Diamonds",55],
-  ["115 Diamonds",115],["240 Diamonds",215],
-  ["610 Diamonds",540],["1240 Diamonds",1090],
-  ["2530 Diamonds",2160]
- ],
- weekly: [
-  ["Weekly",220],["Weekly 2x",440],
-  ["Weekly 3x",670],["Weekly 4x",890],
-  ["Weekly 5x",1080],["Weekly Lite 2x",200]
- ],
- monthly: [
-  ["Monthly",1100],["Monthly 2x",2200],
-  ["Monthly 3x",3400],["Monthly 4x",4230],
-  ["Monthly 5x",5300]
- ],
- levelup: [
-  ["Level Up 6",100],["Level Up 10",135],
-  ["Level Up 15",145],["Level Up 20",145],
-  ["Level Up 25",145],["Level Up 30",200],
-  ["Level Up All",750]
- ]
+
+const groups={
+
+"💎 Diamond Packages":[
+["25 Diamonds",30],
+["50 Diamonds",55],
+["115 Diamonds",115],
+["240 Diamonds",215],
+["610 Diamonds",540],
+["1240 Diamonds",1090],
+["2530 Diamonds",2160]
+],
+
+"📅 Weekly Membership":[
+["Weekly",220],
+["Weekly 2x",440],
+["Weekly 3x",670],
+["Weekly 4x",890],
+["Weekly 5x",1080],
+["Weekly Lite 2x",200]
+],
+
+"🗓️ Monthly Membership":[
+["Monthly",1100],
+["Monthly 2x",2200],
+["Monthly 3x",3400],
+["Monthly 4x",4230],
+["Monthly 5x",5300]
+],
+
+"⭐ Level Up Packages":[
+["Level Up 6",100],
+["Level Up 10",135],
+["Level Up 15",145],
+["Level Up 20",145],
+["Level Up 25",145],
+["Level Up 30",200],
+["Level Up All",750]
+]
+
 };
 
-const select = document.getElementById("package");
-const priceInput = document.getElementById("price");
+const select=document.getElementById("package");
+const priceInput=document.getElementById("price");
+const catalog=document.getElementById("catalog");
 
-Object.entries(groups).forEach(([group,items])=>{
- const container = document.getElementById(group);
+Object.entries(groups).forEach(([title,items])=>{
+
+ const heading=document.createElement("h2");
+ heading.className="section-title";
+ heading.textContent=title;
+ catalog.appendChild(heading);
+
+ const grid=document.createElement("div");
+ grid.className="grid";
+ catalog.appendChild(grid);
 
  items.forEach(([name,price])=>{
-  const card = document.createElement("div");
-  card.className="package";
-  const icon = group==="diamonds" ? "💎" :
-   group==="weekly" ? "📅" :
-   group==="monthly" ? "🗓️" : "⭐";
 
-  const heading=document.createElement("h3");
-  heading.textContent=name;
+  const card=document.createElement("div");
+  card.className="package";
+
+  const h=document.createElement("h3");
+  h.textContent=name;
+
   const amount=document.createElement("div");
   amount.className="price";
   amount.textContent="Rs. "+price;
 
-  const emoji=document.createElement("div");
-  emoji.className="diamond";
-  emoji.textContent=icon;
-
-  card.append(emoji,heading,amount);
-  card.addEventListener("click",()=>{
-   select.value=name;
-   updatePrice();
-   document.querySelectorAll(".package").forEach(c=>c.classList.remove("selected"));
-   card.classList.add("selected");
-   document.getElementById("orderForm").scrollIntoView({behavior:"smooth"});
-  });
-  container.appendChild(card);
+  card.append(h,amount);
+  grid.appendChild(card);
 
   const option=document.createElement("option");
   option.value=name;
   option.textContent=name+" - Rs. "+price;
   select.appendChild(option);
+
+  card.addEventListener("click",()=>{
+   select.value=name;
+   updatePrice();
+
+   document.querySelectorAll(".package")
+   .forEach(c=>c.classList.remove("selected"));
+
+   card.classList.add("selected");
+
+   document.getElementById("orderForm")
+   .scrollIntoView({behavior:"smooth"});
+  });
+
  });
+
 });
+
+function findPackage(name){
+ return Object.values(groups)
+ .flat()
+ .find(x=>x[0]===name);
+}
 
 function updatePrice(){
- const all=Object.values(groups).flat();
- const item=all.find(x=>x[0]===select.value);
- priceInput.value=item ? "Rs. "+item[1] : "";
+ const item=findPackage(select.value);
+ priceInput.value=item?"Rs. "+item[1]:"";
 }
+
 select.addEventListener("change",updatePrice);
 
-document.getElementById("orderForm").addEventListener("submit",e=>{
+document.getElementById("orderForm")
+.addEventListener("submit",async e=>{
+
  e.preventDefault();
+
  const uid=document.getElementById("uid").value.trim();
  const name=select.value;
- const item=Object.values(groups).flat().find(x=>x[0]===name);
 
  if(!/^\d{5,20}$/.test(uid)){
-  alert("Please enter a valid demo UID (5-20 digits).");
+  alert("Enter a valid test UID.");
   return;
  }
- if(!item){alert("Please select a package.");return;}
 
- document.getElementById("orderDetails").textContent=
-  "UID: "+uid+" | Package: "+name+" | Price: Rs. "+item[1]+
-  " | Status: Demo only";
+ if(!findPackage(name)){
+  alert("Select a package.");
+  return;
+ }
 
- document.getElementById("result").style.display="block";
- document.getElementById("result").scrollIntoView({behavior:"smooth"});
+ try{
+
+  const response=await fetch("/api/orders",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({
+    uid:uid,
+    packageName:name
+   })
+  });
+
+  const data=await response.json();
+
+  if(!response.ok){
+   throw new Error(data.error||"Order failed");
+  }
+
+  document.getElementById("details").textContent=
+   "Order ID: "+data.orderId+
+   " | Package: "+name+
+   " | Status: "+data.status;
+
+  document.getElementById("result").hidden=false;
+
+  document.getElementById("result")
+  .scrollIntoView({behavior:"smooth"});
+
+ }catch(error){
+  alert(error.message+
+  ". Please make sure the backend server is running.");
+ }
+
 });
-function resetOrder(){
- document.getElementById("orderForm").reset();
- priceInput.value="";
- document.getElementById("result").style.display="none";
- document.querySelectorAll(".package").forEach(c=>c.classList.remove("selected"));
-}
+
 </script>
 </body>
 </html>
