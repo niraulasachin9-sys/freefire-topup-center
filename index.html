@@ -223,3 +223,19 @@ document.getElementById("orderForm").addEventListener("submit",e=>{
  }
  if(!item){alert("Please select a package.");return;}
 
+ document.getElementById("orderDetails").textContent=
+  "UID: "+uid+" | Package: "+name+" | Price: Rs. "+item[1]+
+  " | Status: Demo only";
+
+ document.getElementById("result").style.display="block";
+ document.getElementById("result").scrollIntoView({behavior:"smooth"});
+});
+function resetOrder(){
+ document.getElementById("orderForm").reset();
+ priceInput.value="";
+ document.getElementById("result").style.display="none";
+ document.querySelectorAll(".package").forEach(c=>c.classList.remove("selected"));
+}
+</script>
+</body>
+</html>
